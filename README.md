@@ -16,6 +16,15 @@ AniDub Studio takes any anime video and produces a fully dubbed version in your 
 5. **Muxes** the dubbed audio back into the video (FFmpeg)
 
 ---
+![Project Home](images/ahome.png)
+---
+![Project Home2](images/ahome2.png)
+---
+![Project Function](images/afunction.png)
+---
+![Project Processing](images/aprocessing.png)
+---
+
 
 ## Requirements
 
