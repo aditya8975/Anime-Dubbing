@@ -1,6 +1,6 @@
 # 🎌 AniDub Studio — Anime Dubbing Engine
 
-> **Production-ready, 100% free** anime dubbing platform.  
+> **free** anime dubbing platform.  
 > Japanese/Korean → Hindi/English/Spanish/+ in minutes.
 
 ---
