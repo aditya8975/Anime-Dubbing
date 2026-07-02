@@ -99,25 +99,6 @@ Then open `frontend/index.html` in your browser.
 ### Source (Transcription)
 Japanese, Korean, Chinese, English, Spanish, French, German, Portuguese, Arabic, Thai, Vietnamese, Indonesian, Hindi, Tamil, Telugu, Bengali, Russian, Turkish, Italian, Dutch, and 50+ more via Groq Whisper.
 
-### Target (Dubbing)
-
-| Language | TTS Engine | Voice Quality |
-|----------|-----------|---------------|
-| **English** | Groq PlayAI | ⭐⭐⭐⭐⭐ Excellent |
-| **Hindi** | Microsoft Edge Neural | ⭐⭐⭐⭐ Very Good |
-| **Spanish** | Microsoft Edge Neural | ⭐⭐⭐⭐ Very Good |
-| **Portuguese** | Microsoft Edge Neural | ⭐⭐⭐⭐ Very Good |
-| **French** | Microsoft Edge Neural | ⭐⭐⭐⭐ Very Good |
-| **German** | Microsoft Edge Neural | ⭐⭐⭐⭐ Very Good |
-| **Arabic** | Microsoft Edge Neural | ⭐⭐⭐⭐ Very Good |
-| **Indonesian** | Microsoft Edge Neural | ⭐⭐⭐⭐ Very Good |
-| **Japanese** | Microsoft Edge Neural | ⭐⭐⭐⭐ Very Good |
-| **Korean** | Microsoft Edge Neural | ⭐⭐⭐⭐ Very Good |
-| **Chinese** | Microsoft Edge Neural | ⭐⭐⭐⭐ Very Good |
-| Russian, Turkish, Italian, Thai, Vietnamese, Dutch, + more | Microsoft Edge Neural | ⭐⭐⭐ Good |
-
----
-
 ## Voice Profiles
 
 | Profile | Character Type | Best For |
