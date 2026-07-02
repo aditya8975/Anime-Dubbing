@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AniDub Studio — Anime Dubbing Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <!-- Animated background layers -->
+  <div class="bg-noise"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <!-- ── TOP BAR ── -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <div class="brand-mark">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2z" fill="url(#bg)"/>
+          <path d="M12 11v10l9-5-9-5z" fill="white" opacity="0.9"/>
+          <path d="M22 11h2v10h-2z" fill="white" opacity="0.5"/>
+          <defs>
+            <linearGradient id="bg" x1="2" y1="2" x2="30" y2="30">
+              <stop offset="0%" stop-color="#f97316"/>
+              <stop offset="50%" stop-color="#ec4899"/>
+              <stop offset="100%" stop-color="#8b5cf6"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">AniDub</span>
+        <span class="brand-tag">STUDIO v4</span>
+      </div>
+    </div>
+    <div class="topbar-chips">
+      <span class="chip">Free APIs</span>
+      <span class="chip chip-ai">Groq AI</span>
+      <span class="chip chip-local">Local FFmpeg</span>
+    </div>
+    <div class="server-badge" id="serverBadge">
+      <div class="badge-dot" id="badgeDot"></div>
+      <span id="badgeText">Connecting...</span>
+      <span class="demucs-tag" id="demucsTag" style="display:none"></span>
+    </div>
+  </header>
+
+  <!-- ── MAIN GRID ── -->
+  <main class="main-grid">
+
+    <!-- ═══ PANEL 1: CONFIGURE ═══ -->
+    <section class="card card-config" id="cardConfig">
+      <div class="card-label">01 / CONFIGURE</div>
+      <h2 class="card-title">API &amp; Languages</h2>
+
+      <div class="field">
+        <label class="lbl">
+          Groq API Key
+          <a href="https://console.groq.com" target="_blank" class="lbl-link">Get free →</a>
+        </label>
+        <div class="key-row">
+          <input type="password" id="apiKey" class="inp" placeholder="gsk_..." autocomplete="off" />
+          <button class="btn-verify" id="btnVerify" onclick="validateKey()">Verify</button>
+        </div>
+        <div class="key-feedback" id="keyFeedback"></div>
+      </div>
+
+      <div class="field-pair">
+        <div class="field">
+          <label class="lbl">Source Language</label>
+          <select class="inp" id="srcLang">
+            <option value="Japanese" selected>🇯🇵 Japanese</option>
+            <option value="Korean">🇰🇷 Korean</option>
+            <option value="Chinese">🇨🇳 Chinese</option>
+            <option value="English">🇺🇸 English</option>
+            <option value="Spanish">🇪🇸 Spanish</option>
+            <option value="French">🇫🇷 French</option>
+            <option value="German">🇩🇪 German</option>
+            <option value="Portuguese">🇧🇷 Portuguese</option>
+            <option value="Arabic">🇸🇦 Arabic</option>
+            <option value="Thai">🇹🇭 Thai</option>
+            <option value="Vietnamese">🇻🇳 Vietnamese</option>
+            <option value="Indonesian">🇮🇩 Indonesian</option>
+            <option value="Hindi">🇮🇳 Hindi</option>
+            <option value="Tamil">🇮🇳 Tamil</option>
+            <option value="Telugu">🇮🇳 Telugu</option>
+            <option value="Bengali">🇧🇩 Bengali</option>
+            <option value="Russian">🇷🇺 Russian</option>
+            <option value="Turkish">🇹🇷 Turkish</option>
+            <option value="Italian">🇮🇹 Italian</option>
+            <option value="Dutch">🇳🇱 Dutch</option>
+          </select>
+        </div>
+        <div class="swap-arrow">⇄</div>
+        <div class="field">
+          <label class="lbl">Target Language</label>
+          <select class="inp" id="tgtLang">
+            <option value="Hindi" selected>🇮🇳 Hindi</option>
+            <option value="English">🇺🇸 English</option>
+            <option value="Spanish">🇪🇸 Spanish</option>
+            <option value="Portuguese">🇧🇷 Portuguese</option>
+            <option value="French">🇫🇷 French</option>
+            <option value="German">🇩🇪 German</option>
+            <option value="Russian">🇷🇺 Russian</option>
+            <option value="Arabic">🇸🇦 Arabic</option>
+            <option value="Turkish">🇹🇷 Turkish</option>
+            <option value="Indonesian">🇮🇩 Indonesian</option>
+            <option value="Korean">🇰🇷 Korean</option>
+            <option value="Japanese">🇯🇵 Japanese</option>
+            <option value="Chinese">🇨🇳 Chinese</option>
+            <option value="Thai">🇹🇭 Thai</option>
+            <option value="Vietnamese">🇻🇳 Vietnamese</option>
+            <option value="Italian">🇮🇹 Italian</option>
+            <option value="Dutch">🇳🇱 Dutch</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ PANEL 2: VOICE ═══ -->
+    <section class="card card-voice" id="cardVoice">
+      <div class="card-label">02 / VOICE &amp; STYLE</div>
+      <h2 class="card-title">Character Settings</h2>
+
+      <div class="field">
+        <label class="lbl">Translation Style</label>
+        <div class="style-tiles">
+          <label class="tile tile-active"><input type="radio" name="style" value="natural" checked/>
+            <span class="tile-icon">🎭</span><span class="tile-name">Natural</span><span class="tile-hint">Lip-sync friendly</span>
+          </label>
+          <label class="tile"><input type="radio" name="style" value="literal"/>
+            <span class="tile-icon">📖</span><span class="tile-name">Literal</span><span class="tile-hint">Stays close to original</span>
+          </label>
+          <label class="tile"><input type="radio" name="style" value="localized"/>
+            <span class="tile-icon">🌍</span><span class="tile-name">Localized</span><span class="tile-hint">Cultural adaptation</span>
+          </label>
+          <label class="tile"><input type="radio" name="style" value="broadcast"/>
+            <span class="tile-icon">📡</span><span class="tile-name">Broadcast</span><span class="tile-hint">Formal &amp; clear</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field-pair">
+        <div class="field">
+          <label class="lbl">Voice Profile</label>
+          <select class="inp" id="voiceProfile">
+            <option value="male_hero">⚡ Male Hero</option>
+            <option value="male_cool">🧊 Male Cool</option>
+            <option value="male_villain">💀 Male Villain</option>
+            <option value="male_wise">🧙 Male Wise</option>
+            <option value="female_hero">⚡ Female Hero</option>
+            <option value="female_gentle">🌸 Female Gentle</option>
+            <option value="female_villain">🕷️ Female Villain</option>
+            <option value="narrator">📻 Narrator</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="lbl">Speaking Speed — <span id="speedVal">1.00×</span></label>
+          <input type="range" class="slider" id="speedSlider" min="0.5" max="2.0" step="0.05" value="1.0"
+            oninput="document.getElementById('speedVal').textContent=parseFloat(this.value).toFixed(2)+'×'" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="lbl">Original Audio Bleed — <span id="origVolVal">0%</span></label>
+        <input type="range" class="slider" id="origVolSlider" min="0" max="0.5" step="0.05" value="0"
+          oninput="document.getElementById('origVolVal').textContent=Math.round(this.value*100)+'%'" />
+        <div class="field-hint">0% = pure dubbed audio. 10–20% = keep ambient SFX.</div>
+      </div>
+
+      <!-- Demucs toggle -->
+      <div class="field demucs-row" id="demucsRow">
+        <label class="toggle-row">
+          <div class="toggle-info">
+            <span class="toggle-label">Vocal Separation (Demucs)</span>
+            <span class="toggle-desc">Isolate vocals before transcribing — better accuracy, slower (~2 min)</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="demucsToggle" checked />
+            <span class="switch-knob"></span>
+          </label>
+        </label>
+      </div>
+    </section>
+
+    <!-- ═══ PANEL 3: INPUT ═══ -->
+    <section class="card card-input" id="cardInput">
+      <div class="card-label">03 / INPUT</div>
+      <h2 class="card-title">Source Media</h2>
+
+      <div class="input-tabs">
+        <button class="itab itab-active" id="itabVideo" onclick="switchTab('video')">📹 Video File</button>
+        <button class="itab" id="itabText" onclick="switchTab('text')">📝 Text / Script</button>
+      </div>
+
+      <!-- VIDEO TAB -->
+      <div id="videoTabContent">
+        <div class="dropzone" id="dropzone">
+          <div class="dz-icon">
+            <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+              <rect x="3" y="7" width="38" height="30" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
+              <path d="M18 16l12 6-12 6V16z" fill="currentColor" opacity="0.7"/>
+              <path d="M22 2v8M18 4l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="dz-text">Drop anime video here</div>
+          <div class="dz-hint">MP4, MKV, AVI, MOV, WebM, FLV — up to 4 GB</div>
+          <button class="btn-outline" onclick="document.getElementById('fileInput').click()">Browse</button>
+          <input type="file" id="fileInput" accept="video/*,.mkv" style="display:none" onchange="handleFile(this.files[0])" />
+        </div>
+        <div class="file-card" id="fileCard" style="display:none"></div>
+      </div>
+
+      <!-- TEXT TAB -->
+      <div id="textTabContent" style="display:none">
+        <textarea class="inp inp-ta" id="dialogueText" rows="10"
+          placeholder="Paste Japanese/Korean/etc dialogue here. One line = one segment.
+
+Example:
+だって頑張ったんだもん！
+お前のことが好きだ。
+諦めないよ、絶対に！"></textarea>
+        <button class="btn-primary mt-8" onclick="runTextDub()">🔊 Generate Dubbed Audio</button>
+      </div>
+    </section>
+
+    <!-- ═══ PANEL 4: LAUNCH ═══ -->
+    <section class="card card-launch">
+      <button class="btn-launch" id="btnDub" onclick="startDub()" disabled>
+        <div class="launch-glyph">⚡</div>
+        <div class="launch-main">START DUBBING</div>
+        <div class="launch-sub" id="launchSub">Add API key &amp; upload video to begin</div>
+      </button>
+    </section>
+
+  </main>
+
+  <!-- ════ PROGRESS OVERLAY ════ -->
+  <div class="overlay" id="overlayProgress" style="display:none">
+    <div class="modal-box modal-progress">
+      <div class="modal-top">
+        <div>
+          <div class="modal-title" id="progressTitle">Dubbing in progress...</div>
+          <div class="modal-sub" id="progressJobId"></div>
+        </div>
+        <div class="pct-badge" id="pctBadge">0%</div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="pbar-wrap">
+        <div class="pbar-track">
+          <div class="pbar-fill" id="pbarFill"></div>
+        </div>
+      </div>
+
+      <!-- Step indicators -->
+      <div class="steps">
+        <div class="step" id="step-separate"><div class="step-dot"></div><span>Separate</span></div>
+        <div class="step" id="step-transcribe"><div class="step-dot"></div><span>Transcribe</span></div>
+        <div class="step" id="step-translate"><div class="step-dot"></div><span>Translate</span></div>
+        <div class="step" id="step-tts"><div class="step-dot"></div><span>Voice</span></div>
+        <div class="step" id="step-fit"><div class="step-dot"></div><span>Fit</span></div>
+        <div class="step" id="step-mix"><div class="step-dot"></div><span>Mix</span></div>
+      </div>
+
+      <!-- Live log -->
+      <div class="log-box" id="logBox"></div>
+
+      <div class="modal-actions">
+        <button class="btn-ghost" onclick="cancelJob()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ RESULT OVERLAY ════ -->
+  <div class="overlay" id="overlayResult" style="display:none">
+    <div class="modal-box modal-result">
+      <div class="result-burst">🎌</div>
+      <div class="result-heading">Dubbed!</div>
+      <div class="result-detail" id="resultDetail"></div>
+
+      <div class="result-actions">
+        <button class="btn-download" onclick="downloadVideo()">⬇ Download Video</button>
+        <button class="btn-outline" onclick="downloadSRT()">📄 SRT Subtitles</button>
+        <button class="btn-outline" onclick="openSegmentEditor()">✏️ Edit Segments</button>
+        <button class="btn-ghost" onclick="resetAll()">Dub Another</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ SEGMENT EDITOR OVERLAY ════ -->
+  <div class="overlay" id="overlaySegments" style="display:none" onclick="closeSegmentEditor(event)">
+    <div class="modal-box modal-editor" onclick="event.stopPropagation()">
+      <div class="modal-top">
+        <div class="modal-title">Edit Translations</div>
+        <button class="modal-close" onclick="closeSegmentEditor()">✕</button>
+      </div>
+      <div class="editor-legend">
+        <span class="leg-time">TIME</span>
+        <span class="leg-orig">ORIGINAL</span>
+        <span class="leg-trans">TRANSLATION (editable)</span>
+        <span class="leg-gap">GAP</span>
+      </div>
+      <div class="editor-body" id="editorBody"></div>
+      <div class="modal-actions">
+        <button class="btn-ghost" onclick="closeSegmentEditor()">Close</button>
+        <button class="btn-primary" onclick="saveSegmentEdits()">✓ Save Edits</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ TRANSCRIPT OVERLAY ════ -->
+  <div class="overlay" id="overlayTranscript" style="display:none" onclick="closeTranscript(event)">
+    <div class="modal-box modal-transcript" onclick="event.stopPropagation()">
+      <div class="modal-top">
+        <div class="modal-title">Transcription &amp; Translation</div>
+        <button class="modal-close" onclick="closeTranscript()">✕</button>
+      </div>
+      <div class="transcript-head">
+        <span>Time</span>
+        <span id="thSrc">Original</span>
+        <span id="thTgt">Translation</span>
+      </div>
+      <div class="transcript-body" id="transcriptBody"></div>
+    </div>
+  </div>
+
+  <!-- ════ TOASTS ════ -->
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
